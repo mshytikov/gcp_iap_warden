@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.gstatic.com/iap/verify/public_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/html
+      Content-Length:
+      - '520'
+      Date:
+      - Wed, 24 Jan 2018 16:09:23 GMT
+      Expires:
+      - Wed, 24 Jan 2018 16:59:23 GMT
+      Last-Modified:
+      - Wed, 24 Jan 2018 13:39:00 GMT
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - sffe
+      X-Xss-Protection:
+      - 1; mode=block
+      Age:
+      - '1029'
+      Cache-Control:
+      - public, max-age=3000
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "CJ6WnQ" : "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEtYPCKeMuBz3UUbt9YQNA/l6C+yMK\nUxx/8LLuDUhLVZuQHMfD5VOYy3fSLr1tUQdGVKgK2ch0ID4HHUVeEBOh6w==\n-----END PUBLIC KEY-----\n",
+           "UlmhOQ" : "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAET0DXDKPRhYGNGy5P9OeI/Lxa6IwE\nFNv5N86By3mdORe3KPse8STnP1DjMekHxEPgYIR9dwM5ygG610BuNAFJXA==\n-----END PUBLIC KEY-----\n",
+           "_s_w8A" : "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEoVodxElfyxGb5mQz5llybZu1CmN8\nN0R51MNkyfHD9c0TLbh7FDFFeXtSFPMfnE/BZQyen1cwTf80t2hesdh3Zg==\n-----END PUBLIC KEY-----\n",
+           "ftPLJA" : "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE0y9JFihhOJmT7OcgnrFODhClu/ik\nOdySwt4rwcyJ1BB8FxIN4Tzpxb9XM42A+H0RxpS9I3m7Y4GweL0ghUwk2w==\n-----END PUBLIC KEY-----\n",
+           "qV5OHQ" : "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEmA0vmgaCgzLafUh0Sje2Y1jzUJsC\nD4Reb6dOuUrjcUp45qXfK/OQMTE7j0Uwt9Zfnens1AEXx7S1PPQxg4OqYg==\n-----END PUBLIC KEY-----\n"
+        }
+    http_version: 
+  recorded_at: Wed, 24 Jan 2018 15:08:49 GMT
+recorded_with: VCR 4.0.0

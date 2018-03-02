@@ -1,0 +1,8 @@
+inherit_from:
+  - https://raw.githubusercontent.com/bloomon/style-guide/v0.1.0/ruby/rubocop.yml
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.4
