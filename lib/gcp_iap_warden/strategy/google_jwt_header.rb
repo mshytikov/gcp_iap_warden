@@ -15,17 +15,19 @@ module GcpIapWarden::Strategy
     class << self
       attr_accessor :jwt_options, :key_store
 
-      def config(project:, backend:)
-        raise "Invalid config for project" if project.nil?
-        raise "Invalid config for backend" if backend.nil?
+      def config(project_number:nil, backend:nil, project_id:nil)
+        raise "Invalid config for project number" if project_number.nil?
+        raise "Invalid config for backend" if backend.nil? && project_id.nil?
+        raise "Invalid config for project id" if project_id.nil? && backend.nil?
 
+        expected_aud = project_id.nil? ? "/projects/#{project_number}/global/backendServices/#{backend}" : "/projects/#{project_number}/apps/#{project_id}"
         @jwt_options = {
           algorithm: JWT_ALG,
           verify_iss: true,
           verify_iat: true,
           verify_aud: true,
           iss: JWT_ISS,
-          aud:  "/projects/#{project}/global/backendServices/#{backend}",
+          aud:  expected_aud,
         }
       end
 
