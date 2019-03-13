@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gcp_iap_warden (0.1.1)
+    gcp_iap_warden (0.2.0)
       jwt (~> 2.1.0)
       warden (~> 1.2.0)
 
@@ -118,4 +118,4 @@ DEPENDENCIES
   webmock (~> 3.3.0)
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
