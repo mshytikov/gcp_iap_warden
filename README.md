@@ -35,6 +35,27 @@ Rails.application.config.middleware.insert_after(
 end
 ```
 
+Or for AppEngine like
+
+```
+# ./config/initializers/warden.rb
+
+require "gcp_iap_warden"
+
+GcpIapWarden::Strategy::GoogleJWTHeader.config(
+  project: ENV.fetch("GCP_PROJECT_ID"),
+  backend: ENV.fetch("APP_ENGINE_PROJECT_ID")
+  platform: :app_engine
+)
+
+Rails.application.config.middleware.insert_after(
+  ActionDispatch::Session::CookieStore, Warden::Manager
+) do |manager|
+  manager.default_strategies :gcp_iap_google_jwt_header
+  manager.failure_app = UnauthorizedController
+end
+```
+
 Your `UnauthorizedController` may look like
 
 ```

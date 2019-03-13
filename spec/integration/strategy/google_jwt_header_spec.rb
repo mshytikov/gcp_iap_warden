@@ -26,10 +26,11 @@ RSpec.describe GcpIapWarden::Strategy::GoogleJWTHeader do
     end
   end
 
-  def init_strategy(project, backend)
+  def init_strategy(project, backend, platform: :gce)
     GcpIapWarden::Strategy::GoogleJWTHeader.config(
       project: project,
-      backend: backend
+      backend: backend,
+      platform: platform
     )
   end
 
@@ -84,14 +85,15 @@ RSpec.describe GcpIapWarden::Strategy::GoogleJWTHeader do
     end
 
     context "when strategy is wrongly configured" do
-      where(:project, :backend, :expected_msg) do
+      where(:project, :backend, :platform, :expected_msg) do
         [
-          [nil, "234234234", "Invalid config for project"],
-          ["234234234", nil, "Invalid config for backend"],
+          [nil, "234234234", :gce, "Invalid config for project"],
+          ["234234234", nil, :gce, "Invalid config for backend"],
+          ["234234234", "234234234", :kkk, "Invalid config for platform"],
         ]
       end
 
-      subject { init_strategy(project, backend) }
+      subject { init_strategy(project, backend, platform: platform) }
 
       with_them do
         it { expect { subject }.to raise_error(RuntimeError, expected_msg) }
@@ -164,6 +166,22 @@ RSpec.describe GcpIapWarden::Strategy::GoogleJWTHeader do
           "Invalid audience. " \
           "Expected" \
           " /projects/234234234/global/backendServices/1189510079829359176, " \
+          "received" \
+          " /projects/593755045751/global/backendServices/1189510079829359176"
+        end
+      end
+    end
+
+    ### XXX: indirect testing that aud correct for app engine
+    context "when jwt configured for different platform" do
+      before { init_strategy(project, backend, platform: :app_engine) }
+      before { make_request(request_headers) }
+
+      it_behaves_like "unauthorized" do
+        let(:expected_error) do
+          "Invalid audience. " \
+          "Expected" \
+          " /projects/593755045751/apps/1189510079829359176, " \
           "received" \
           " /projects/593755045751/global/backendServices/1189510079829359176"
         end
